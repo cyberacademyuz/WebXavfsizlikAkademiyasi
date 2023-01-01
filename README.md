@@ -6,7 +6,7 @@ Ushbu bo'limda SQL ineksiya nima ekanligini o'rganamiz, va buni ba'zi misollar b
 
 ## <mark style="color:yellow;">SQL</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;"><mark style="color:green;"><mark style="color:green;"></mark> <mark style="color:yellow;"></mark><mark style="color:yellow;">ineksiya o'zi nima ?</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;"><mark style="color:red;">****<mark style="color:red;"></mark><mark style="color:yellow;">** **</mark><mark style="color:yellow;">**(SQLi)**</mark> <a href="#retrieving-hidden-data-yashirin-malumotlarni-olish" id="retrieving-hidden-data-yashirin-malumotlarni-olish"></a>
 
-<mark style="color:yellow;">**SQL ineksiya**</mark> - bu hackerga websaytning ma'lumotlar ba'zasiga yuboriladigan so'rovlarga o'zgartirishlar kiritish imkonini beruvchi veb-xavfsizlik zaifligi hisoblanadi. Bu asosan hackerga, to'g'ridan to'g'ri olishning imkoni bo'lmagan maxfiy ma'lumotlarni ko'rish imkonini beradi. Masalan bularga, saytda ro'yxatdan o'tgan foydalanuvchilarga tegishli bo'lgan ma'lumotlar yoki websayting o'zi kirishi mumkin bo'lgan boshqa ma'lumotlar bo'lishi mumkin. Hacker ko'pincha ushbu ma'lumotlarni o'zgartirishi yoki o'chirib tashlashi mumkin, bu esa websaytdagi ma'lumotlarga yoki sayt bajaradigan harakatlarida doimiy o'zgarishlarga olib keladi.
+<mark style="color:yellow;">**SQL ineksiya**</mark> - bu hackerga websaytning ma'lumotlar ba'zasiga yuboriladigan so'rovlarga o'zgartirishlar kiritish imkonini beruvchi web-xavfsizlik zaifligi hisoblanadi. Bu asosan hackerga, to'g'ridan to'g'ri olishning imkoni bo'lmagan maxfiy ma'lumotlarni ko'rish imkonini beradi. Masalan bularga, saytda ro'yxatdan o'tgan foydalanuvchilarga tegishli bo'lgan ma'lumotlar yoki websayting o'zi kirishi mumkin bo'lgan boshqa ma'lumotlar bo'lishi mumkin. Hacker ko'pincha ushbu ma'lumotlarni o'zgartirishi yoki o'chirib tashlashi mumkin, bu esa websaytdagi ma'lumotlarga yoki sayt bajaradigan harakatlarida doimiy o'zgarishlarga olib keladi.
 
 
 
@@ -117,7 +117,7 @@ SELECT name, description FROM products WHERE category = 'Gifts'
 
 bunga  `' UNION SELECT username, password FROM users--` SQL so'rovini ham qo'shib yuborishi mumkin:
 
-Bu veb-saytga mahsulot nomlari va ma'lumotlari bilan birga barcha foydalanuvchi usernamelari va parollarini ko'rsatishga olib keladi.
+Bu websaytga mahsulot nomlari va ma'lumotlari bilan birga barcha foydalanuvchi usernamelari va parollarini ko'rsatishga olib keladi.
 
 {% hint style="info" %}
 **Ko'proq o'qish:**
@@ -155,7 +155,7 @@ SELECT * FROM information_schema.tables
 
 Zaiflik turiga va tegishli ma'lumotlar bazasiga qarab, **Blind SQL** ineksiya orqali zaifliklardan foydalanish uchun quyidagi usullardan foydalanish mumkin:
 
-* Siz conditionning to'griligiga qarab, veb-saytdan qaytayotgan javobda yuzaga keladigan farqni aniqlash uchun so'rovning logikasini o'zgartirishingiz mumkin. Bu bazi mantiqiy amal logikasiga yangi shart kiritishga imkon berishi yoki shartli ravishda **divide-by-zero** (nolga bo'lish) kabi xatoni keltirib chiqarishi mumkin.
+* Siz conditionning to'griligiga qarab, websaytdan qaytayotgan javobda yuzaga keladigan farqni aniqlash uchun so'rovning logikasini o'zgartirishingiz mumkin. Bu bazi mantiqiy amal logikasiga yangi shart kiritishga imkon berishi yoki shartli ravishda **divide-by-zero** (nolga bo'lish) kabi xatoni keltirib chiqarishi mumkin.
 * Siz so'rovni ko'rib chiqish vaqtini majburan sekinlashtirishingiz mumkin, bu sizga websaytning reponse qaytarish vaqtiga asoslanib, shartning to'g'riligini aniqlashga imkon beradi.
 * <mark style="color:yellow;"></mark>[<mark style="color:yellow;">OAST</mark>](https://portswigger.net/burp/application-security-testing/oast) texnikasidan foydalangan holda **OAST** tarmog'ining o'zaro ta'sirini ishga tushirishingiz mumkin. Ushbu texnika juda kuchli va boshqa usullar ishlamagan holatlarda ham ishlaydi. Ko'pincha siz OAST kanali orqali ma'lumotlarni to'g'ridan-to'g'ri olishingiz mumkin, Masalan, ma'lumotlarni, **siz nazorat qiladigan** domen uchun DNS lookup-ga joylashtirish orqali.
 
@@ -173,7 +173,7 @@ SQL ineksiya tekshiruvini websaytning har bir SQLi bo'lishi mumkin bolgan qismla
 
 * Bir tirnoq `'` belgisini yuborish va xatolar yoki boshqa [<mark style="color:yellow;">anomaliyalarni</mark> ](https://savodxon.uz/izoh?anomaliya)qidirish.
 * Entry pointning asl qiymatini va boshqa qiymatni solishtiruvchi ba'zi SQL so'rov sintaksisini yuborish va natijada websayt javoblaridagi o'zgarishlarni aniqlash.
-* `OR 1=1` va `OR 1=2, and` kabi **Boolean** shartlarini yuborish va vebsayt responsedagi o'zgarishlarni aniqlash.
+* `OR 1=1` va `OR 1=2, and` kabi **Boolean** shartlarini yuborish va websayt responsedagi o'zgarishlarni aniqlash.
 * SQL so'rovi bajarilganda vaqtni sekinlashtirish uchun mo'ljallangan payloadlarni yuboring va javob qaytarish vaqtidagi farqlarni aniqlang.
 * SQL so'rovi bajarilganda OAST tarmog'ining o'zaro ta'sirini ishga tushirish uchun mo'ljallangan OAST payloadlarini yuborish va har qanday natijada ta'sirlarini kuzatish.
 
@@ -183,16 +183,16 @@ Ko'pgina SQL ineksiya zaifliklari `SELECT` so'rovining `WHERE` qismida paydo bo'
 
 Biroq, **SQL ineksiya zaifliklari**, qoida tariqasida so'rovning istalgan joyida va turli so'rov turlarida paydo bo'lishi mumkin. Quiydagilar SQL ineksiya paydo bo'lishi mumkin bo'lgan eng keng tarqalgan boshqa joylar:
 
-* &#x20;`UPDATE` bandida, yangilangan qiymatlarda yoki `WHERE`qismida
+* `UPDATE` bandida, yangilangan qiymatlarda yoki `WHERE`qismida
 * `INSERT` bandida, kiritilgan qiymatlar ichida.
 * `SELECT` iboralarida, jadval yoki ustun nomi ichida.
 * `SELECT`  iboralarida, `ORDER BY` bandida.
 
 ## <mark style="color:yellow;">Turli vaziyarlardagi SQL ineksiya</mark> <a href="#sql-injection-in-different-contexts" id="sql-injection-in-different-contexts"></a>
 
-Hozirgacha barcha laboratoriyalarda siz zararli SQL payloadingizni ineksiya qilish uchun string turidagi SQL so'rovdan foydalangansiz. Ammo shuni ta'kidlash kerakki, siz veb-sayt tomonidan SQL so'rovi sifatida qayta ishlanadigan har qanday boshqariladigan input yordamida SQL ineksiya hujumlarini amalga oshirishingiz mumkin.
+Hozirgacha barcha laboratoriyalarda siz zararli SQL payloadingizni ineksiya qilish uchun string turidagi SQL so'rovdan foydalangansiz. Ammo shuni ta'kidlash kerakki, siz websayt tomonidan SQL so'rovi sifatida qayta ishlanadigan har qanday boshqariladigan input yordamida SQL ineksiya hujumlarini amalga oshirishingiz mumkin.
 
-Misol uchun, ba'zi veb-saytlar inputni JSON yoki XML formatida qabul qiladi va ma'lumotlar bazasini so'rash uchun undan foydalanadi.
+Misol uchun, ba'zi websaytlar inputni JSON yoki XML formatida qabul qiladi va ma'lumotlar bazasini so'rash uchun undan foydalanadi.
 
 Bu turli formatlar hatto WAF va boshqa ximoya mexanizmlari tufayli bloklangan hujumlarni obfuskatsiya qilish uchun alternativ usullarni ham taqdim etishi mumkin. Zaif websaytlar ko'pincha request ichidan oddiy SQL inektsiya keywordlarini qidiradi, shuning uchun siz bu filtrni bypass qilish uchun man qilingan belgilarni encode qilishingiz kerak yoki ulardan foydalanmaslik orqali ushbu filtrlarni aylanib o'tishingiz mumkin. Misol uchun, quyidagi XML-ga asoslangan SQL inektsiya `SELECT` qismda S harfini encode qilish uchun [<mark style="color:yellow;">XML escape</mark> ](https://www.ibm.com/docs/en/was-liberty/base?topic=SSEQTP\_liberty/com.ibm.websphere.wlp.doc/ae/rwlp\_xml\_escape.htm)dan foydalanyapti.
 
@@ -217,7 +217,7 @@ Bu SQL kodni ko'rib chiqishdan avval server tomonda decode qilinadi.
 
 Websayt, foydalanuvchi kiritgan ma'lumotlarni **HTTP** **request**dan qabul qilganida va ushbu requestni **qayta ishlash jarayonida** ma'lumotlarni SQL so'roviga havfsiz bo'lmagan holda kiritganida birinchi darajali SQL ineksiya paydo bo'ladi.
 
-Ikkinchi darajali SQL ineksiyada (shuningdek, **Stored SQL ineksiya** ham deyiladi) vebsayt, foydalanuvchi kiritgan ma'lumotlarini HTTP requestdan oladi va ulardan keyinchalik foydalanish uchun saqlab qo'yadi. Bu odatda ma'lumotlar bazasiga kiritilgan ma'lumotlarni joylashtirish orqali amalga oshiriladi, ammo ma'lumotlar saqlanadigan joyda hech qanday zaiflik paydo bo'lmaydi. Keyinchalik, boshqa HTTP so'rovini ko'rib chiqayotganida vebsaytda saqlangan ma'lumotlarni oladi va xavfsiz tarzda SQL so'roviga kiritadi.
+Ikkinchi darajali SQL ineksiyada esa (shuningdek, **Stored SQL ineksiya** ham deyiladi) websayt, foydalanuvchi kiritgan ma'lumotlarni HTTP requestdan oladi va ulardan keyinchalik foydalanish uchun saqlab qo'yadi. Bu odatda input orqali kiritilgan ma'lumotlarni ma'lumotlar bazasiga joylashtirish orqali amalga oshiriladi, ammo ma'lumotlar saqlanadigan joyda hech qanday zaiflik paydo bo'lmaydi. Keyinchalik, boshqa HTTP so'rovni ko'rib chiqayotganida websaytda saqlangan ma'lumotlarni oladi va xavfsiz tarzda SQL so'roviga kiritadi.
 
 ![](<.gitbook/assets/image (16).png>)
 
@@ -227,13 +227,18 @@ Ikkinchi darajali SQL ineksiyada (shuningdek, **Stored SQL ineksiya** ham deyila
 
 Ma'lumotlar bazasi uchun SQL tilining ba'zi asosiy xususiyatlari mashhur **ma'lumotlar baza**larida ham bir xil tarzda amalga oshiriladi va SQL ineksiya zaifliklarini aniqlash va ma'lumotlar bazalari turlicha bo'lsada SQL zaifliklaridan foydalanishning ko'plab usullari bir xil.
 
-Biroq, umumiy databaselar o'rtasida juda ko'p farqlar mavjud. Bu shuni anglatadiki, SQL ineksiyani aniqlash va ekspluatatsiya qilishning ba'zi usullari turli platformalarda boshqacha ishlaydi. Masalan quyidagilar:
+Biroq, umumiy databaselar o'rtasida juda ko'p farqlar mavjud. Bu SQL ineksiyani aniqlash va ekspluatatsiya qilishning ba'zi usullari turli platformalarda boshqacha ishlashini anglatadi. Masalan:
 
-* Satrlarni birlashtirish sintaksisi.
-* Komentlar.
-* To'plamli (yoki to'plangan) so'rovlar.
-* Platformaga xos API.
-* Xatolik habarlari.
+* Stringlarni birlashtirish uchun sintaksis
+* Komentlar
+* To'plamli (yoki to'plangan) so'rovlar
+* Platformaga xos APIlar
+* Xatolik habarlari
+
+{% hint style="info" %}
+**Ko'proq o'qish:**\
+[SQL ineksiya cheat sheet ☰](sql-ineksiya/sql-ineksiya-cheat-sheet.md)
+{% endhint %}
 
 ## <mark style="color:yellow;">SQL ineksiyani oldini olish</mark> <a href="#sql-ineksiyasining-oldini-olish" id="sql-ineksiyasining-oldini-olish"></a>
 
@@ -255,6 +260,6 @@ statement.setString(1, input);
 ResultSet resultSet = statement.executeQuery();
 ```
 
-<mark style="color:yellow;">**Parametrlangan so'rovlar**</mark>**,** ishonchsiz ma'lumotlar so'rovda **ma'lumot sifatida** paydo bo'ladigan har qanday vaziyatda, shu jumladan `WHERE` qismi va`INSERT` yoki  `UPDATE`  steytmentlardagi qiymatlar uchun ishlatilishi mumkin. Lekin ulardan soʻrovning boshqa qismlarida, masalan, jadval yoki ustun nomlari yoki `ORDER BY` qismida ishonchsiz maʼlumotlarni qayta ishlash uchun ishlatib boʻlmaydi. So'rovning ushbu qismlariga, ishonchsiz ma'lumotlarni joylashtiradigan veb-sayt funksiyasi boshqa yondashuvni qo'llashi kerak. Masalan, kiritish mumkin bo'lgan SQL so'rovlarini **white list**ga qo'shib qo'yish yoki kerakli vazifani amalga oshirish uchun boshqa usuldan foydalanish.
+<mark style="color:yellow;">**Parametrlangan so'rovlar,**</mark> ishonchsiz ma'lumotlar so'rovda **ma'lumot sifatida** paydo bo'ladigan har qanday vaziyatda, shu jumladan `WHERE` va`INSERT` yoki  `UPDATE` steytmentlardagi qiymatlar uchun ishlatilishi mumkin. Lekin ulardan soʻrovning boshqa qismlarida, masalan, jadval yoki ustun nomlari yoki `ORDER BY` qismida ishonchsiz maʼlumotlarni qayta ishlash uchun ishlatib boʻlmaydi. So'rovning ushbu qismlariga, ishonchsiz ma'lumotlarni joylashtiradigan websayt funksiyasi kiritish mumkin bo'lgan qiymatlarni **white list**ga kiritish yoki kerakli vazifani amalga oshirish uchun boshqa logikadan foydalanish kabi boshqa yondashuvni qo'llashi kerak.
 
 <mark style="color:yellow;">**Parametrlangan so'rov**</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;"></mark> SQL ineksiyaning oldini olishda samaraliroq bo'lishi uchun, so'rovda ishlatiladigan kod har doim yaxshi kod bo'lishi va hech qachon biron bir manbadan o'zgaruvchan ma'lumotlarni o'z ichiga olmasligi kerak. Har bir alohida holatda maʼlumotlarning ishonchli ekanligiga qaror qabul qilishim kerak degan hayollarga borishingiz shart emas va rostdan ham xavfsiz  holatlar uchun soʻrovda string birikmasidan foydalanishingiz mumkin.
