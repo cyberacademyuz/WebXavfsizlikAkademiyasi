@@ -1,3 +1,8 @@
+---
+cover: .gitbook/assets/sqlinjection banner.png
+coverY: 0
+---
+
 # SQL ineksiya (SQL injection)
 
 Ushbu bo'limda SQL ineksiya nima ekanligini o'rganamiz, va buni ba'zi misollar bilan tariflaymiz, turlicha SQL ineksiya zaifliklarini qanday topish va ulardan foydalanishni tushuntiramiz va qanday qilib SQL ineksiyani oldini olishni ham ko'rib chiqamiz.
