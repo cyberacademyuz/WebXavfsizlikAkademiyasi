@@ -107,7 +107,7 @@ Bu SQL so'rov  <mark style="color:red;">`administrator`</mark>  foydalanuvchisi 
 
 ## <mark style="color:yellow;">Retriving data from other database tables: (Boshqa database jadvallaridan ma'lumotlarni olish</mark> <a href="#subverting-application-logic-ilova-logikasini-ozgartirish" id="subverting-application-logic-ilova-logikasini-ozgartirish"></a>
 
-Agar SQL so'rov natijalari websayt responsida qaytarilsa, hacker ma'lumotlar bazasidagi boshqa jadvallardan ma'lumotlarni olish uchun SQL ineksiya zaifligidan foydalanishi mumkin. Bu yana bir qo'shimcha `SELECT` so'rovini bajarish va natijani so'rovga qo'shish imkonini beruvchi `UNION` kalit so'zi yordamida amalga oshiriladi.
+Agar SQL so'rov natijalari websayt responsida qaytarilsa, hacker ma'lumotlar bazasidagi boshqa jadvallardan ma'lumotlarni olish uchun SQL ineksiya zaifligidan foydalanishi mumkin. Bu yana bir qo'shimcha `SELECT` so'rovini bajarish va natijani so'rovga qo'shish imkonini beruvchi `UNION` kalit so'zi yordamida amalga oshiriladi.&#x20;
 
 Misol uchun foydalanuvchi  saytdagi "<mark style="color:green;">Gifts</mark>" kategoriyasini tanlashi orqali quyidagi so'rov yuborilsa:
 
@@ -208,6 +208,10 @@ Bu turli formatlar hatto WAF va boshqa ximoya mexanizmlari tufayli bloklangan hu
 ```
 
 Bu SQL kodni ko'rib chiqishdan avval server tomonda decode qilinadi.
+
+{% hint style="warning" %}
+<mark style="color:yellow;">LAB:</mark> [XML encoding orqali filterni chetlab o'tuvchi SQL ineksiya **≫**](https://portswigger.net/web-security/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding)****
+{% endhint %}
 
 ## <mark style="color:yellow;">Ikkinchi darajali SQL ineksiya</mark> <a href="#ikkinchi-darajali-sql-inektsiyasi" id="ikkinchi-darajali-sql-inektsiyasi"></a>
 
