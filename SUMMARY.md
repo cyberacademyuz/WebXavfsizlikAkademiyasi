@@ -99,3 +99,7 @@
 
 * [Insecure deserialization](insecure-deserialization/insecure-deserialization.md)
 * [Insecure deserialization zaifliklarini exploit qilish](insecure-deserialization/insecure-deserialization-zaifliklarini-exploit-qilish.md)
+
+## Directory traversal
+
+* [Directory traversal](directory-traversal/directory-traversal.md)
