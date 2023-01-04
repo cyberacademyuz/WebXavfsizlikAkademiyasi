@@ -58,7 +58,7 @@ https://insecure-website.com/loadImage?filename=..\..\..\windows\win.ini
 <mark style="color:yellow;">**Lab:**</mark> [Oddiy holatdagi file path traversal≫](https://portswigger.net/web-security/file-path-traversal/lab-simple)
 {% endhint %}
 
-# <mark style="color:yellow;">File path traversal zaifliklaridan foydalanish uchun umumiy to'siqlar</mark>
+# <mark style="color:yellow;">File path traversal zaifliklarini exploit qilishdagi umumiy to'siqlar</mark>
 
 Foydalanuvchi kiritgan ma'lumotlarni fayl yo'llariga joylashtirishni amalga oshiruvchi ko'plab websaytlar path traversal hujumlaridan himoya qiladi ammo ko'pincha ularni chetlab o'tish mumkin.
 
@@ -104,3 +104,25 @@ filename=../../../etc/passwd%00.png
 <mark style="color:yellow;">**Lab:**</mark> [Pathning boshlanishini tekshirilishini null byte bilan chetlab o'tish ≫](https://portswigger.net/web-security/file-path-traversal/lab-validate-file-extension-null-byte-bypass)
 {% endhint %}
 
+# <mark style="color:yellow">Directory traversal hujumini qanday oldini olinadi</mark>
+
+File path traversal zaifliklarini oldini olishning eng samarali usuli foydalanuvchi ma'lumotlarining fayl tizimi API ga o'tkazilishini to'liq oldini olishdir.  Bamalga oshiradigan ko'plab websayt funktsiyalari xuddi shu xatti-harakatni yanada xavfsizroq ta'minlash uchun qayta yozilishi mumkin.
+
+Agar foydalanuvchi ma'lumotlarini fayl tizimning API siga o'tkazish shart bo'lsa, hujumlarning oldini olish uchun ikkita himoya usulidan foydalanish kerak:
+
+* Websayt uni qayta ishlashdan oldin foydalanuvchi kiritgan ma'lumotni tekshirishi kerak. Eng yaxshi usul, ruxsat berilgan qiymatlarni white listga kiritish va solishtirish kerak. Agar talab qilinadigan funksionllikda buning iloji bo'lmasa, foydalanuvchi kiritgan qiymay faqat alpha-numeric belgilar kabi ruhxsat berilgan qiymatlardan iborat ekanliliga ishonch hosil qilishi kerak.
+
+* kiritilgan ma'lumotni tekshirgandan so'ng, websayt uni asosiy katalogga qo'shishi va yo'lni kanoniklashtirish uchun platformaning fayl tizimi API-dan foydalanishi kerak.  U kanoniklashtirilgan yo'lni kutilgan katalogdan boshlanishini ta'minlashi kerak.
+
+Quyida user inputiga asoslangan kanonik fayl yo'lini tekshirish uchun oddiy Java kodining namunasi keltirilgan:
+
+```
+File name = new File(BASE_DIRECTORY, userInput);
+if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {
+    // proccess file
+}
+```
+
+{% hint style="info" %}
+<mark style="color:yellow;">[Burp Suitening web zaiflik skaneri yordamida directory traversal zaifliklarini topishingiz](https://portswigger.net/burp/vulnerability-scanner)</mark>
+{% endhint %}
