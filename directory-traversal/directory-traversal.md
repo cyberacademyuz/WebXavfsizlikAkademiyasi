@@ -1,14 +1,9 @@
-# Directory traversal
-
-
 Ushbu bo'limda <b>directory traversal</b> nima ekanligini tushuntiramiz, directory traversal hujumlarini qanday amalga oshirish va umumiy to'siqlarni chetlab o'tishni ko'rib chiqamiz va directory traversal zaifliklarini oldini olishni o'rgatamiz.
-
-
 
 {% hint style="warning" %}
 <mark style="color:yellow;">**Labaratoriyalar:**</mark>
 
-Agar siz directory traversal haqida bilsangiz pastdagi link orqali, haqiqiy web sayt kabi tuzilgan laboratoriyalarni yechishingiz mumkin.[<mark style="color:yellow;"></mark>\ <mark style="color:yellow;">Barcha directory traversal labaratoriyalarini ko'rish ≫</mark>](https://portswigger.net/web-security/all-labs#directory-traversal)<mark style="color:yellow;"></mark>
+Agar siz directory traversal haqida bilsangiz pastdagi link orqali, haqiqiy web sayt kabi tuzilgan laboratoriyalarni yechishingiz mumkin.[<mark style="color:yellow;"></mark> <mark style="color:yellow;">Barcha directory traversal labaratoriyalarini ko'rish ≫</mark>](https://portswigger.net/web-security/all-labs#directory-traversal)<mark style="color:yellow;"></mark>
 {% endhint %}
 
 # <mark style="color:yellow;">Directory traversal nima ?</mark>
@@ -19,14 +14,14 @@ Directory traversal (shuningdek, file path traversal deb ham ataladi) bu hackerg
 
 Sotiladigan mahsulotlar rasmlari mavjud online xarid websaytini ko'zdan kechiring.  Rasmlar HTML orqali yuklanadi, masalan:
 
- ```
- <img src="/loadImage?filename=218.png">
- ```
+```
+<img src="/loadImage?filename=218.png">
+```
 
  `loadImage` URL manzili `filename` parametrini oladi va belgilangan faylni qaytaradi. Rasm fayllari diskda /var/www/images/ joylashuvida saqlanadi. Rasmni ko'rsatish uchun websayt ushbu asosiy katalogga so'ralgan fayl nomini qo'shadi va faylni o'qish uchun filesystem API dan foydalanadi. Yuqoridagi holatda, websayt faylni quyidagi fayl joylashuvidan o'qiydi:
 
 ```
- /var/www/images/218.png
+/var/www/images/218.png
 ```
 
 Websayt directory traversalga qarshi himoyani amalga oshirmaydi, shuning uchun hacker serverning fayl tizimidan o'zboshimchalik bilan faylni olish uchun quyidagi URL manziliga request yuborishi mumkin:
@@ -55,7 +50,7 @@ Windows-da `../` va `..\` ikkalasi ham kataloglarga o'tish ketma-ketligi bo'lib,
 https://insecure-website.com/loadImage?filename=..\..\..\windows\win.ini
 ```
 {% hint style="warning" %}
-<mark style="color:yellow;">**Lab:**</mark> [Oddiy holatdagi file path traversal≫](https://portswigger.net/web-security/file-path-traversal/lab-simple)
+<mark style="color:yellow;">**Lab:**</mark> [Oddiy holatdagi file path traversal ≫](https://portswigger.net/web-security/file-path-traversal/lab-simple)
 {% endhint %}
 
 # <mark style="color:yellow;">File path traversal zaifliklarini exploit qilishdagi umumiy to'siqlar</mark>
@@ -76,18 +71,18 @@ Siz `....//` yoki `....\/` kabi ichki o'tish ketma-ketliklaridan foydalanishingi
 <mark style="color:yellow;">**Lab:**</mark> [Rekursiv bo'lmagan holda olib tashlangan o'tish ketma-ketligi bilan file path traversal hujumi ≫](https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively)
 {% endhint %}
 
-URL yo'li yoki multipart/form-data requestining filename parametri kabi ba'zi kontekstlarda web-serverlar kiritilgan ma'lumotni websaytga o'tkazishdan oldin har qanday kataloglarni o'tkazish ketma-ketligini olib tashlashi mumkin.  Ba'zan siz URL encode yoki URL encodedan ikki marta foydalanib, ../ belgilar yordamida bu turdagi filtrdan o'tishingiz mumkin, natijada `../`, %2e%2e%2f yoki `../../` %252e%252e%252f bo'ladi. ..%c0%af yoki ..%ef%bc%8f kabi turli nostandart encode ham yordam berishi mumkin.
+URL yo'li yoki multipart/form-data requestining filename parametri kabi ba'zi kontekstlarda web-serverlar kiritilgan ma'lumotni websaytga o'tkazishdan oldin har qanday kataloglarni o'tkazish ketma-ketligini olib tashlashi mumkin.  Ba'zan siz URL encode yoki URL encodedan ikki marta foydalanib, `../` belgilar yordamida bu turdagi filtrdan o'tishingiz mumkin, natijada `../`, %2e%2e%2f yoki `../../` %252e%252e%252f bo'ladi. `..%c0%af` yoki `..%ef%bc%8f` kabi turli nostandart encode ham yordam berishi mumkin.
 
 <mark style="color:yellow;">[Burp Suite Professional](https://portswigger.net/burp/pro)</mark> foydalanuvchilari uchun Burp Intruder sinab ko'rishingiz mumkin bo'lgan turli xil encodelangan path traversal ketma-ketligini o'z ichiga olgan built-in payloadlar ro'yxatini <b>(Fuzzing - path traversal)</b> taqdim etadi.
 
 {% hint style="warning" %}
-<mark style="color:yellow;">**Lab:**</mark> [O'tish (/) ketma ketligi 2  marta URL-decodelash bilan olib tashlangan holatda file path traversal ≫](https://portswigger.net/web-security/file-path-traversal/lab-superfluous-url-decode)
+<mark style="color:yellow;">**Lab:**</mark> [O'tish (/) belgilarini 2 marta URL-decodelash bilan olib tashlab file path traversal ≫](https://portswigger.net/web-security/file-path-traversal/lab-superfluous-url-decode)
 {% endhint %}
 
 Agar websayt foydalanuvchi tomonidan berilgan fayl nomini kerakli papka bilan boshlanishini talab qilsa, masalan, `/var/www/images`, u holda birinchi talab qilingan papkani, keyin esa kerakli harakatlanish ketma-ketligini kiritish mumkin.  Masalan:
 
 ```
-filename=/var/www/images/../../..e/tc/
+filename=/var/www/images/../../../etc/
 ```
 
 {% hint style="warning" %}
@@ -124,5 +119,6 @@ if (file.getCanonicalPath().startsWith(BASE_DIRECTORY)) {
 ```
 
 {% hint style="info" %}
-<mark style="color:yellow;">[Burp Suitening web zaiflik skaneri yordamida directory traversal zaifliklarini topishingiz](https://portswigger.net/burp/vulnerability-scanner)</mark>
+<b>Ko'proq o'qish</b>
+[Burp Suitening web zaiflik skaneri yordamida directory traversal zaifliklarini topishingiz](https://portswigger.net/burp/vulnerability-scanner)
 {% endhint %}
