@@ -25,15 +25,15 @@ Muvaffaqiyatli amalga oshirilgan SQL ineksiya hujumi parollar, kredit karta ma'l
 
 Har xil holatda yuzaga keladigan turlicha SQL ineksiya zaifliklari, hujumlar va usullar mavjud. Ba'zi umumiy SQL ineksiya zaifliklariga quyidagilar misol bo'la oladi:
 
-<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Retriving hidden data:**</mark>](./#retrieving-hidden-data-yashirin-malumotlarni-olish-3) <mark style="color:orange;"></mark> Qo'shimcha natijalarni olish uchun SQL so'rovini o'zgartirish mumkin bo'lgan va shu orqali yashirin ma'lumotlarni olish.
+<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Retriving hidden data:**</mark>](./#retrieving-hidden-data-yashirin-malumotlarni-olish-3) <mark style="color:orange;"></mark> Qo'shimcha natijalarga ega bo'lish uchun SQL so'rovini o'zgartirish va shu orqali yashirin ma'lumotlarni olish.
 
-<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Subverting application logic: (Ilova logikasini o'zgartirish)**</mark>](./#subverting-application-logic-ilova-logikasini-ozgartirish)<mark style="color:yellow;">,</mark> bu yerda siz websayt logikasigaga xalaqit beradigan so'rovni o'zgartirishingiz mumkin.
+<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Subverting application logic: (Ilova logikasini o'zgartirish)**</mark>](./#subverting-application-logic-ilova-logikasini-ozgartirish)<mark style="color:yellow;">,</mark> websayt logikasiga aralashish uchun SQL so'rovini o'zgartirishingiz mumkin.
 
-<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**UNION**</mark><mark style="color:yellow;">** **</mark><mark style="color:yellow;"><mark style="color:orange;">****<mark style="color:orange;"></mark><mark style="color:yellow;">** **</mark><mark style="color:yellow;">**attacks: (UNION hujumlari)**</mark>](sql-ineksiya/sql-ineksiya-union-hujumlari.md) <mark style="color:yellow;"></mark> bu yerda turli xil ma'lumotlar bazasidagi jadvallardan ma'lumotlarni olishingiz mumkin.
+<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**UNION**</mark><mark style="color:yellow;">** **</mark><mark style="color:yellow;"><mark style="color:orange;">****<mark style="color:orange;"></mark><mark style="color:yellow;">** **</mark><mark style="color:yellow;">**attacks: (UNION hujumlari)**</mark>](sql-ineksiya/sql-ineksiya-union-hujumlari.md) turli databasedagi jadvallardan ma'lumotlarni olishingiz mumkin.
 
-<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Examining the database: (Ma'lumotlar bazasini tekshirish)**</mark>](sql-ineksiya/malumotlar-bazasini-tekshirish.md) <mark style="color:yellow;"></mark> bu orqali ma'lumotlar bazasining versiyasini va tuzilishi haqida ma'lumot olishingiz mumkin.
+<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Examining the database: (Ma'lumotlar bazasini tekshirish)**</mark>](sql-ineksiya/malumotlar-bazasini-tekshirish.md) <mark style="color:yellow;"></mark> ma'lumotlar bazasining versiyasi va tuzilishi haqida ma'lumot olishingiz mumkin.
 
-<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Blind SQL injection**</mark>](sql-ineksiya/blind-sql-ineksiya.md) orqali, siz nazorat qilayotgan so'rov natijalari websaytning javoblarida qaytarilmaydi.
+<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Blind SQL injection**</mark>](sql-ineksiya/blind-sql-ineksiya.md) orqali, siz boshqarayotgan so'rov natijalari websayt javoblarida qaytarilmaydi.
 
 ## <mark style="color:yellow;">Retrieving hidden data (Yashirin ma'lumotlarni olish)</mark> <a href="#retrieving-hidden-data-yashirin-malumotlarni-olish" id="retrieving-hidden-data-yashirin-malumotlarni-olish"></a>
 
@@ -49,9 +49,9 @@ Bu holatda websayt ma'lumotlar bazasidan kerakli mahsulotlarning ma'lumotlarini 
 SELECT * FROM products WHERE category = 'Gifts' AND released = 1
 ```
 
-SQL so'rovi, ma'lumotlar bazasidan quyidagi ma'lumotlarni berishini so'raydi
+SQL so'rovi, ma'lumotlar bazasidan quyidagi ma'lumotlarni berishini so'raydi:
 
-* Barcha mahsulotlar (\*)
+* Barcha mahsulotlarni (\*) olish
 * **products** jadavali
 * kategotiyasi **Gifts** bo'lgan
 * va **released =** 1 bo'lgan
