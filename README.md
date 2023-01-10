@@ -134,13 +134,13 @@ Bu websaytga mahsulot nomlari va ma'lumotlari bilan birga barcha foydalanuvchi u
 
 SQL ineksiya zaifligi aniqlangandan keyin, ma'lumotlar bazasi haqida ba'zi ma'lumotlarni olish ham foyda beradi. Ushbu ma'lumot ko'pincha keyingi qadamdagi boshqa eksplutatsiyalar uchun yo'l ochishi mumkin.
 
-Ma'lumotlar bazasi uchun uning versiyasi haqidagi ma'lumotlarni so'rab bilib olishingiz ham mumkin. Buni amalga oshiruvchi SQL kod sintaksisi ma'lumotlar bazasining turiga bog'liq, shuning uchun qaysi ma'lumotlar bazasi ishlayotganidan qat'iy nazar, ma'lumotlar bazasining turini aniqlashingiz kerak. Masalan, **Oracle**-da siz quyidagilarni bajarish orqali uning versiyasi haqida ma'lumot olishingiz mumkin:
+Ma'lumotlar bazasi uchun uning versiyasi haqidagi ma'lumotlarni so'rab bilib olishingiz ham mumkin. Buni amalga oshiruvchi SQL kod sintaksisi ma'lumotlar bazasining turiga bog'liq, shuning uchun qaysi ma'lumotlar bazasi ishlayotganidan qat'iy nazar, ma'lumotlar bazasining turini aniqlashingiz kerak. Masalan, **Oracle**-da siz quyida SQL so'rovini yuborish orqali uning versiyasi haqida ma'lumot olishingiz mumkin:
 
 ```sql
 SELECT * FROM v$version
 ```
 
-Shuningdek, ma'lumotlar bazasida qanday jadvallar mavjudligini va ular qaysi ustunlardan iboratligini aniqlashingiz ham mumkin. Masalan, ko'pgina ma'lumotlar bazalarida jadvallarning ro'yxatini olish uchun quyidagi so'rovni yuborishingiz mumkin:
+Shuningdek, ma'lumotlar bazasida qanday jadvallar borligini va ular qanday ustunlardan iboratligini aniqlashingiz ham mumkin. Masalan, ko'pgina ma'lumotlar bazalarida jadvallarning ro'yxatini olish uchun quyidagi so'rovni yuborishingiz mumkin:
 
 ```sql
 SELECT * FROM information_schema.tables
@@ -156,7 +156,7 @@ SELECT * FROM information_schema.tables
 
 ## <mark style="color:yellow;">Blind SQL ineksiya zaifligi</mark> <a href="#blind-sql-ineksiya-zaifligi" id="blind-sql-ineksiya-zaifligi"></a>
 
-<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Bind SQL**</mark>](sql-ineksiya/blind-sql-ineksiya.md) ineksiya ko'p ucharydigan ineksiya turi hisoblanadi. Bu zaiflikda websayt, SQL so'rov natijalarini yoki  database-ga tegishli xatolarning ma'lumotlarini responseda qaytarmaydi. Blind SQL ineksiyadan ma'lumotlarga ruxsatsiz kirish uchun hali ham foydalanish mumkin, ammo bu bilan bog'liq usullar odatda ancha murakkab va amalga oshirish qiyin.
+<mark style="color:yellow;">****</mark>[<mark style="color:yellow;">**Bind SQL**</mark>](sql-ineksiya/blind-sql-ineksiya.md) ineksiya ko'p ucharydigan ineksiya turi hisoblanadi. Bu zaiflikda, websayt SQL so'rov natijalarini yoki  database-ga tegishli xatolarning ma'lumotlarini responseda qaytarmaydi. Blind SQL ineksiyadan ma'lumotlarga ruxsatsiz kirish uchun hali ham foydalanish mumkin, ammo bu bilan bog'liq usullar odatda ancha murakkab va amalga oshirish qiyin.
 
 Zaiflik turiga va tegishli ma'lumotlar bazasiga qarab, **Blind SQL** ineksiya orqali zaifliklardan foydalanish uchun quyidagi usullardan foydalanish mumkin:
 
@@ -179,27 +179,27 @@ SQL ineksiya tekshiruvini websaytning har bir SQLi bo'lishi mumkin bolgan qismla
 * Bir tirnoq `'` belgisini yuborish va xatolar yoki boshqa [<mark style="color:yellow;">anomaliyalarni</mark> ](https://savodxon.uz/izoh?anomaliya)qidirish.
 * Entry pointning asl qiymatini va boshqa qiymatni solishtiruvchi ba'zi SQL so'rov sintaksisini yuborish va natijada websayt javoblaridagi o'zgarishlarni aniqlash.
 * `OR 1=1` va `OR 1=2, and` kabi **Boolean** shartlarini yuborish va websayt responsedagi o'zgarishlarni aniqlash.
-* SQL so'rovi bajarilganda vaqtni sekinlashtirish uchun mo'ljallangan payloadlarni yuboring va javob qaytarish vaqtidagi farqlarni aniqlang.
+* SQL so'rovi bajarilganda vaqtni sekinlashtirish uchun mo'ljallangan payloadlarni yuboring va javob qaytishdagi vaqting farqlarini aniqlang.
 * SQL so'rovi bajarilganda OAST tarmog'ining o'zaro ta'sirini ishga tushirish uchun mo'ljallangan OAST payloadlarini yuborish va har qanday natijada ta'sirlarini kuzatish.
 
 ## <mark style="color:yellow;">So'rovning turli qismlarida SQL ineksiya</mark> <a href="#sorovning-turli-qismlariga-sql-inektsiyasi" id="sorovning-turli-qismlariga-sql-inektsiyasi"></a>
 
 Ko'pgina SQL ineksiya zaifliklari `SELECT` so'rovining `WHERE` qismida paydo bo'ladi. Ushbu turdagi SQL ineksiyani tajribali pentesterlar yaxshi tushunishadi.
 
-Biroq, **SQL ineksiya zaifliklari**, qoida tariqasida so'rovning istalgan joyida va turli so'rov turlarida paydo bo'lishi mumkin. Quiydagilar SQL ineksiya paydo bo'lishi mumkin bo'lgan eng keng tarqalgan boshqa joylar:
+Biroq, **SQL ineksiya zaifliklari**, qoida tariqasida so'rovning istalgan joyida va turli so'rov turlarida paydo bo'lishi mumkin. Quiydagilar SQL ineksiya paydo bo'lishi mumkin bo'lgan eng keng tarqalgan boshqa qismlar:
 
-* `UPDATE` bandida, yangilangan qiymatlarda yoki `WHERE`qismida
-* `INSERT` bandida, kiritilgan qiymatlar ichida.
-* `SELECT` iboralarida, jadval yoki ustun nomi ichida.
-* `SELECT`  iboralarida, `ORDER BY` bandida.
+* `UPDATE` bayonot (statement)larida, yangilangan qiymatlarda yoki `WHERE`qismida
+* `INSERT` bayonotlarida, kiritilgan qiymatlar ichida.
+* `SELECT` bayonotlarida, jadval yoki ustun nomi ichida.
+* `SELECT`bayonotlarida, `ORDER BY` bandida.
 
-## <mark style="color:yellow;">Turli vaziyarlardagi SQL ineksiya</mark> <a href="#sql-injection-in-different-contexts" id="sql-injection-in-different-contexts"></a>
+## <mark style="color:yellow;">Turli kontekstlardagi SQL ineksiya</mark> <a href="#sql-injection-in-different-contexts" id="sql-injection-in-different-contexts"></a>
 
-Hozirgacha barcha laboratoriyalarda siz zararli SQL payloadingizni ineksiya qilish uchun string turidagi SQL so'rovdan foydalangansiz. Ammo shuni ta'kidlash kerakki, siz websayt tomonidan SQL so'rovi sifatida qayta ishlanadigan har qanday boshqariladigan input yordamida SQL ineksiya hujumlarini amalga oshirishingiz mumkin.
+Hozirgacha barcha laboratoriyalarda siz zararli SQL payloadingizni ineksiya qilish uchun **string** turidagi SQL so'rovdan foydalandingiz. Ammo shuni ta'kidlash kerakki, siz websayt SQL so'rov sifatida amalga oshiradigan har qanday input yordamida SQL ineksiya hujumlarini amalga oshirishingiz mumkin.
 
-Misol uchun, ba'zi websaytlar inputni JSON yoki XML formatida qabul qiladi va ma'lumotlar bazasini so'rash uchun undan foydalanadi.
+Misol uchun, ba'zi websaytlar inputni **JSON** yoki **XML** formatida qabul qiladi va ma'lumotlar bazasini so'rash uchun undan foydalanadi.
 
-Bu turli formatlar hatto WAF va boshqa ximoya mexanizmlari tufayli bloklangan hujumlarni obfuskatsiya qilish uchun alternativ usullarni ham taqdim etishi mumkin. Zaif websaytlar ko'pincha request ichidan oddiy SQL inektsiya keywordlarini qidiradi, shuning uchun siz bu filtrni bypass qilish uchun man qilingan belgilarni encode qilishingiz kerak yoki ulardan foydalanmaslik orqali ushbu filtrlarni aylanib o'tishingiz mumkin. Misol uchun, quyidagi XML-ga asoslangan SQL inektsiya `SELECT` qismda S harfini encode qilish uchun [<mark style="color:yellow;">XML escape</mark> ](https://www.ibm.com/docs/en/was-liberty/base?topic=SSEQTP\_liberty/com.ibm.websphere.wlp.doc/ae/rwlp\_xml\_escape.htm)dan foydalanyapti.
+Bu turli formatlar hatto **WAF** va boshqa ximoya mexanizmlari tufayli bloklangan hujumlarni obfuskatsiya qilish uchun boshqa usullarni ham taqdim etishi mumkin. Zaif websaytlar ko'pincha request ichidan oddiy SQL inektsiya keywordlarini qidiradi, shuning uchun siz bu filtrni chetlab o'tish uchun man qilingan belgilarni **encode** qilishingiz kerak yoki man qilingan belgilardan foydalanmaslik orqali ushbu filtrlarni aylanib o'tishingiz mumkin. Misol uchun, quyidagi XML-ga asoslangan SQL inektsiya `SELECT` qismida S harfini encode qilish uchun [<mark style="color:yellow;">XML escape</mark>](https://www.ibm.com/docs/en/was-liberty/base?topic=SSEQTP\_liberty/com.ibm.websphere.wlp.doc/ae/rwlp\_xml\_escape.htm) dan foydalanyapti.
 
 ```xml
 <stockCheck>
@@ -212,7 +212,7 @@ Bu turli formatlar hatto WAF va boshqa ximoya mexanizmlari tufayli bloklangan hu
 </stockCheck>
 ```
 
-Bu SQL kodni ko'rib chiqishdan avval server tomonda decode qilinadi.
+Bu SQL so'rovi bajarilishidan avval server tomonda decode qilinadi.
 
 {% hint style="warning" %}
 <mark style="color:yellow;">LAB:</mark> [XML encoding orqali filterni chetlab o'tuvchi SQL ineksiya **≫**](https://portswigger.net/web-security/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding)****
