@@ -220,21 +220,21 @@ Bu SQL so'rovi bajarilishidan avval server tomonda decode qilinadi.
 
 ## <mark style="color:yellow;">Ikkinchi darajali SQL ineksiya</mark> <a href="#ikkinchi-darajali-sql-inektsiyasi" id="ikkinchi-darajali-sql-inektsiyasi"></a>
 
-Websayt, foydalanuvchi kiritgan ma'lumotlarni **HTTP** **request**dan qabul qilganida va ushbu requestni **qayta ishlash jarayonida** ma'lumotlarni SQL so'roviga havfsiz bo'lmagan holda kiritganida birinchi darajali SQL ineksiya paydo bo'ladi.
+Websayt, foydalanuvchi kiritgan ma'lumotlarni **HTTP** **request**dan qabul qilganida va ushbu requestni **qayta ishlash jarayonida** ma'lumotlarni SQL so'roviga havfsiz bo'lmagan yo'l bilan kiritganida birinchi darajali SQL ineksiya paydo bo'ladi.
 
-Ikkinchi darajali SQL ineksiyada esa (shuningdek, **Stored SQL ineksiya** ham deyiladi) websayt, foydalanuvchi kiritgan ma'lumotlarni HTTP requestdan oladi va ulardan keyinchalik foydalanish uchun saqlab qo'yadi. Bu odatda input orqali kiritilgan ma'lumotlarni ma'lumotlar bazasiga joylashtirish orqali amalga oshiriladi, ammo ma'lumotlar saqlanadigan joyda hech qanday zaiflik paydo bo'lmaydi. Keyinchalik, boshqa HTTP so'rovni ko'rib chiqayotganida websaytda saqlangan ma'lumotlarni oladi va xavfsiz tarzda SQL so'roviga kiritadi.
+Ikkinchi darajali SQL ineksiyada esa (shuningdek, **Stored SQL ineksiya** ham deyiladi) websayt, foydalanuvchi kiritgan ma'lumotlarni HTTP requestdan oladi va ulardan keyinchalik foydalanish uchun saqlab qo'yadi. Bu odatda input orqali kiritilgan ma'lumotlarni ma'lumotlar bazasiga joylashtirish orqali amalga oshiriladi, ammo ma'lumotlar saqlanadigan joyda hech qanday zaiflik paydo bo'lmaydi. Keyinchalik, boshqa HTTP so'rovni ko'rib chiqayotganida websaytda saqlangan ma'lumotlarni oladi va xavfli tarzda SQL so'roviga kiritadi.
 
 ![](<.gitbook/assets/image (16).png>)
 
-<mark style="color:yellow;">**Ikkinchi darajali SQL ineksiya**</mark> <mark style="color:blue;"></mark> ko'pincha dasturchilar SQL ineksiya zaifliklaridan xabardor bo'lishgani sababli  ma'lumotlar bazasini joylashtirishni xavfsiz boshqarish holatlarida sodir bo'ladi. Ma'lumotlar keyinchalik qayta ishlanganda, ular xavfsiz deb hisoblanadi, chunki ular ilgari ma'lumotlar bazasiga xavfsiz tarzda joylashtirilgan. Ushbu qismda ma'lumotlar xavfsiz tarzda qayta ishlanadi, chunki dasturchi uni ishonchli deb hisoblaydi.
+<mark style="color:yellow;">**Ikkinchi darajali SQL ineksiya**</mark> <mark style="color:blue;"></mark> ko'pincha dasturchilar SQL ineksiya zaifliklaridan xabardor bo'lishgani sababli ma'lumotlar bazasiga kiritilgan ma'lumotlarni dastlab havfsiz tarzda qo'lda kiritishganida sodir bo'ladi. Ma'lumotlar keyinchalik qayta ishlanganda, ular xavfsiz deb hisoblanadi, chunki ular ilgari ma'lumotlar bazasiga xavfsiz tarzda joylashtirilgan. Ushbu qismda ma'lumotlar xavfsiz tarzda qayta ishlanadi, chunki dasturchi uni ishonchli deb hisoblagan.
 
 ## <mark style="color:yellow;">Ma'lumotlar bazasiga xos omillar</mark> <a href="#malumotlar-bazasiga-xos-omillar" id="malumotlar-bazasiga-xos-omillar"></a>
 
-Ma'lumotlar bazasi uchun SQL tilining ba'zi asosiy xususiyatlari mashhur **ma'lumotlar baza**larida ham bir xil tarzda amalga oshiriladi va SQL ineksiya zaifliklarini aniqlash va ma'lumotlar bazalari turlicha bo'lsada SQL zaifliklaridan foydalanishning ko'plab usullari bir xil.
+Ma'lumotlar bazasi uchun SQL tilining ba'zi asosiy xususiyatlari keng tarqalgam **ma'lumotlar baza**larida ham bir xil tarzda amalga oshiriladi va SQL ineksiya zaifliklarini aniqlash va ma'lumotlar bazalari turlicha bo'lsada SQL zaifliklaridan foydalanishning ko'p usullari bir xil bo'ladi.
 
 Biroq, umumiy databaselar o'rtasida juda ko'p farqlar mavjud. Bu SQL ineksiyani aniqlash va ekspluatatsiya qilishning ba'zi usullari turli platformalarda boshqacha ishlashini anglatadi. Masalan:
 
-* Stringlarni birlashtirish uchun sintaksis
+* Stringlarni birlashtirish uchun sintaksislar
 * Komentlar
 * To'plamli (yoki to'plangan) so'rovlar
 * Platformaga xos APIlar
@@ -257,7 +257,7 @@ Statement statement = connection.createStatement();
 ResultSet resultSet = statement.executeQuery(query);
 ```
 
-Ushbu kod osongina qayta ishlanishi mumkin, shunda foydalanuvchi kiritgan so'rovlar tuzilishini buzmaydi:
+Ushbu kod esa osongina qayta ishlanishi mumkin, shunda foydalanuvchi kiritgan so'rovlar tuzilishini buzmaydi:
 
 ```plsql
 PreparedStatement statement = connection.prepareStatement("SELECT * FROM products WHERE category = ?");
